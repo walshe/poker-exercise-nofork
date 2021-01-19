@@ -92,6 +92,16 @@ public class PokerHandTests {
         compareHands(WIN, "KS KH KD 2S 2C", "JS JH JD AS AC");
     }
     
+    @Test
+    public void two_pairs_highest_remaining_card_wins() {
+        compareHands(LOSS, "KS KH QD QS 2C", "KS KD QD QC 5C");
+    }
+
+    @Test
+    public void two_pairs_highest_pair_wins() {
+        compareHands(WIN, "QD QS AS AH 2C", "KS KD QD QC 5C");
+    }
+    
     private void compareHands(HandResult expectedResult, String playerHand, String opponentHand) {
         PokerHand player = new PokerHand(playerHand);
         PokerHand opponent = new PokerHand(opponentHand);
