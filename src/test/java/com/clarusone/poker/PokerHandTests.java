@@ -101,6 +101,11 @@ public class PokerHandTests {
     public void two_pairs_highest_pair_wins() {
         compareHands(WIN, "QD QS AS AH 2C", "KS KD QD QC 5C");
     }
+
+    @Test
+    public void royal_flush_wins() {
+        compareHands(WIN, "AS QS TS KS JS", "KD QD JD TD 9D");
+    }
     
     private void compareHands(HandResult expectedResult, String playerHand, String opponentHand) {
         PokerHand player = new PokerHand(playerHand);
