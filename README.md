@@ -51,7 +51,7 @@ The goal is to pass the test suite. If there isn't a test for a particular case,
 ### GitHub
 - Clone or download this repo (do not fork it)
 - Push your solution to a private GitHub repo in your account
-- When your solution is complete, add your ClarusONE contact as a collaborator to this repo, so we can access it
+- When your solution is complete, add your ClarusONE contact as a collaborator to this repo, so they can access it
 
 ## Evaluation
 While we would ideally like to receive a complete solution i.e. a solution which passes all of the included test cases, 
