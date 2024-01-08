@@ -40,7 +40,7 @@ The game can be implemented using any combination of the following languages:
 - Groovy 
 
 You are welcome to add any 3rd party libraries/frameworks. If you choose Kotlin or Groovy, you'll need to modify the 
-build file to support compilation of these languages. It is recommended you use at least JDK version 11.
+build file to support compilation of these languages.
 
 If you choose JavaScript, you'll need to re-implement the skeleton code and tests in this repository. You will 
 also need to include clear instructions for how to build/run the tests e.g. 
