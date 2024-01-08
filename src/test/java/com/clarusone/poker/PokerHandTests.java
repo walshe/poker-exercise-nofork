@@ -1,9 +1,9 @@
 package com.clarusone.poker;
 
-import static com.clarusone.poker.HandResult.*;
-import static org.junit.Assert.assertEquals;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static com.clarusone.poker.HandResult.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PokerHandTests {
 
@@ -91,7 +91,7 @@ public class PokerHandTests {
     public void two_full_houses_highest_three_of_a_kind_wins() {
         compareHands(WIN, "KS KH KD 2S 2C", "JS JH JD AS AC");
     }
-    
+
     @Test
     public void two_pairs_highest_remaining_card_wins() {
         compareHands(LOSS, "KS KH QD QS 2C", "KS KD QD QC 5C");
@@ -111,7 +111,7 @@ public class PokerHandTests {
     public void royal_flush_tie() {
         compareHands(TIE, "AS QS TS KS JS", "AH QH TH KH JH");
     }
-    
+
     private void compareHands(HandResult expectedResult, String playerHand, String opponentHand) {
         PokerHand player = new PokerHand(playerHand);
         PokerHand opponent = new PokerHand(opponentHand);
