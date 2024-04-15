@@ -112,6 +112,11 @@ public class PokerHandTests {
         compareHands(TIE, "AS QS TS KS JS", "AH QH TH KH JH");
     }
 
+    @Test
+    public void royal_flush_beats_four_of_a_kind() {
+        compareHands(WIN, "AS QS TS KS JS", "7H 7C 7D 7S JH");
+    }
+
     private void compareHands(HandResult expectedResult, String playerHand, String opponentHand) {
         PokerHand player = new PokerHand(playerHand);
         PokerHand opponent = new PokerHand(opponentHand);

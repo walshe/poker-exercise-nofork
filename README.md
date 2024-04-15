@@ -38,8 +38,8 @@ The game can be implemented using any combination of the following languages:
 - Kotlin
 - Groovy 
 
-You are welcome to add any 3rd party libraries/frameworks. If you choose Kotlin or Groovy, you'll need to modify the 
-build file to support compilation of these languages.
+Other than Lombok, you are welcome to add any libraries/dependencies to the project. If you use Kotlin or Groovy, you'll need to modify the 
+build to support these languages.
 
 The goal is to pass the test suite. If there isn't a test for a particular case, e.g. an invalid string being passed to the `PokerHand` constructor, you may ignore it.
 
