@@ -25,7 +25,7 @@ The `PokerHand` class has a constructor that accepts a string containing 5 cards
 PokerHand hand = new PokerHand("KS 2H 5C JD TD");
 ```
 
-The characteristics of the string of cards are:
+The characteristics of this string are:
 
 - Each card consists of two characters, where
   - The first character is the value of the card: `2, 3, 4, 5, 6, 7, 8, 9, T(en), J(ack), Q(ueen), K(ing), A(ce)`
