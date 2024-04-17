@@ -2,7 +2,7 @@
 Simple Poker is a variant of poker that removes all decision-making from the game,
 reducing it to a simple game of chance. The rules are:
 
-1. Each player is dealt 5 cards which only they can use
+1. Each player is dealt 5 cards from the same deck which only they can use
 1. The winner is the player with the best hand according to the [standard ranking of poker hands](https://en.wikipedia.org/wiki/List_of_poker_hands)
 
 ### Notes
