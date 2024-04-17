@@ -7,7 +7,7 @@ reducing it to a simple game of chance. The rules are:
 
 ### Notes
 - There is no betting, checking, raising, folding, or anything else that isn't mentioned above
-- In Simple Poker, aces are always the highest card in the deck (14), therefore: 
+- In Simple Poker, aces are always the highest value card (14) in the deck, therefore: 
   - `10, jack, queen, king, ace` **is** a straight
   - `ace, 2, 3, 4, 5` is **not** a straight
 
