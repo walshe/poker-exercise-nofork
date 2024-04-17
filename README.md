@@ -6,7 +6,7 @@ reducing it to a simple game of chance. The rules are:
 1. The winner is the player with the best hand according to the [standard ranking of poker hands](https://en.wikipedia.org/wiki/List_of_poker_hands)
 
 ### Notes
-- There is no betting, checking, raising, folding or indeed anything else that isn't mentioned above
+- There is no betting, checking, raising, folding, or anything else that isn't mentioned above
 - In Simple Poker, aces are always the highest card in the deck (14), therefore: 
   - `10, jack, queen, king, ace` **is** a straight
   - `ace, 2, 3, 4, 5` is **not** a straight
