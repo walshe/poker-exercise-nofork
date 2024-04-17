@@ -2,9 +2,9 @@
 Implement the `int compareTo(PokerHand opponentHand)` method of the `PokerHand` class, such that two poker hands
 can be compared. This method should return
 
-- `HandResult.WIN.comparatorValue` if this hand is better than the opponent's hand 
-- `HandResult.LOSS.comparatorValue` if the opponent's hand is better 
-- `HandResult.TIE.comparatorValue` if the result is a tie (AKA a split pot) 
+- `HandResult.WIN` if this hand is better than the opponent's hand 
+- `HandResult.LOSS` if the opponent's hand is better 
+- `HandResult.TIE` if the result is a tie (AKA a split pot) 
 
 The hands should be ranked according to the rules of [Texas Hold'em](https://en.wikipedia.org/wiki/Texas_hold_%27em).
 

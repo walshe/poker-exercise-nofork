@@ -8,8 +8,10 @@ public class PokerHand implements Comparable<PokerHand> {
 
     @Override
     public int compareTo(PokerHand opponentHand) {
-
-        // Delete the line below
-        throw new UnsupportedOperationException();
+        /*
+        TODO Delete the line below and implement this method to return HandResult.WIN, HandResult.LOSS, or HandResult.TIE,
+        if this hand is better than, worse than, or the same as the opponent's hand
+         */
+        throw new UnsupportedOperationException("Hand comparison not implemented");
     }
 }

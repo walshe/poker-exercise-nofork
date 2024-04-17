@@ -117,11 +117,11 @@ public class PokerHandTests {
         compareHands(WIN, "AS QS TS KS JS", "7H 7C 7D 7S JH");
     }
 
-    private void compareHands(HandResult expectedResult, String playerHand, String opponentHand) {
+    private void compareHands(int expectedResult, String playerHand, String opponentHand) {
         PokerHand player = new PokerHand(playerHand);
         PokerHand opponent = new PokerHand(opponentHand);
         int actualResult = player.compareTo(opponent);
-        assertEquals(expectedResult.comparatorValue, actualResult);
+        assertEquals(expectedResult, actualResult);
     }
 }
 
