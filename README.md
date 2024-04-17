@@ -1,12 +1,23 @@
+## Introduction
+Simple Poker is a variant of poker that removes all decision-making from the game,
+reducing it to a simple game of chance. The rules are:
+
+1. Each player is dealt 5 cards which only they can use
+1. The winner is the player with the best hand according to the [standard ranking of poker hands](https://en.wikipedia.org/wiki/List_of_poker_hands)
+
+### Notes
+- There is no betting, checking, raising, folding or indeed anything else that isn't mentioned above
+- In Simple Poker, aces are always the highest card in the deck (14), therefore: 
+  - `10, jack, queen, king, ace` **is** a straight
+  - `ace, 2, 3, 4, 5` is **not** a straight
+
 ## Task
 Implement the `int compareTo(PokerHand opponentHand)` method of the `PokerHand` class, such that two poker hands
 can be compared. This method should return
 
 - `HandResult.WIN` if this hand is better than the opponent's hand 
-- `HandResult.LOSS` if the opponent's hand is better 
-- `HandResult.TIE` if the result is a tie (AKA a split pot) 
-
-The hands should be ranked according to the rules of [Texas Hold'em](https://en.wikipedia.org/wiki/Texas_hold_%27em).
+- `HandResult.LOSS` if the opponent's hand is better than this hand
+- `HandResult.TIE` if both hands are equal (AKA a split pot) 
 
 The `PokerHand` class has a constructor that accepts a string containing 5 cards, e.g.
 
@@ -21,16 +32,12 @@ The characteristics of the string of cards are:
   - The second character represents the suit: `S(pades), H(earts), D(iamonds), C(lubs)`
 - A space is used as a separator between cards
 
-In this poker game, Aces are always the highest card in the deck (14), so `"AS KH QC JD TD"` _is_ a straight, but 
-`"AS 2H 3C 4D 5D"` _is not_.
-
 ### Tests
 The repository includes a suite of unit tests that can be used to verify the correctness of your solution. It's 
 not feasible to write a test for every possible combination of poker hands, but you are welcome to add additional test
 cases to the suite (but please don't remove or modify any of those provided). 
 
-The tests can be run by executing `./gradlew test` (Mac/Linux) or `gradlew.bat test` (Windows) on the command-line 
-from the project's root directory.
+The tests can be run by executing `./gradlew test` on the command-line from the project's root directory.
 
 ## Guidelines
 The game can be implemented using any combination of the following languages: 
@@ -56,8 +63,13 @@ By default, the project expects to build and run with JDK v21. You are welcome t
 - When your solution is complete, add your ClarusONE contact as a collaborator to this repo, so they can access it
 
 ## Evaluation
-While we would ideally like to receive a complete solution i.e. a solution which passes all of the included test cases, 
-we're more interested in the quality of the solution than completeness. In other words, a high quality solution that 
-omits a few edge cases will receive more credit than a complete, but low-quality solution.
+Ideally, we would like to receive a solution that is both
 
-One measure of the quality of a solution is it's flexibility, e.g. if the rules were changed such that two pairs beats three-of-a-kind, how easy is it to make this change?
+- Complete. All the test cases provided in this repository should pass. Any additional test cases you've included should
+  also pass
+- Implemented to a high-quality 
+
+We're slightly more interested in the quality of the solution than completeness. In other words, a high-quality solution that 
+fails a few tests will likely receive more credit than a complete, but low-quality solution.
+
+One measure of the quality of a solution is its flexibility, e.g. if the rules were changed such that two pairs beats three-of-a-kind, how easy is it to implement this change?
