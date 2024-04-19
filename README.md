@@ -13,11 +13,12 @@ reducing it to a simple game of chance. The rules are:
 
 ## Task
 Implement the `int compareTo(PokerHand opponentHand)` method of the `PokerHand` class, such that two poker hands
-can be compared. This method should return
+can be compared. As per the contract of [Comparable.compareTo](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Comparable.html#compareTo(T)), 
+this method should return:
 
-- `HandResult.WIN` if this hand is better than the opponent's hand 
-- `HandResult.LOSS` if the opponent's hand is better than this hand
-- `HandResult.TIE` if both hands are equal (AKA a split pot) 
+- A positive integer if this hand is better than the opponent's hand 
+- A negative integer if the opponent's hand is better than this hand
+- Zero if both hands are equal (AKA a split pot) 
 
 The `PokerHand` class has a constructor that accepts a string containing 5 cards, e.g.
 
