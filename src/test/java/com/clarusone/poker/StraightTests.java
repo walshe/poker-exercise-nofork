@@ -11,12 +11,12 @@ import static com.clarusone.poker.HandComparisonUtils.assertWin;
 public class StraightTests {
 
     @Test
-    public void two_straights_with_same_highest_card_tie() {
+    void two_straights_with_same_highest_card_tie() {
         assertTie("2S 3H 4H 5S 6C", "3D 4C 5H 6H 2S");
     }
 
     @Test
-    public void straight_beats_three_of_a_kind() {
+    void straight_beats_three_of_a_kind() {
         assertWin("2S 3H 4H 5S 6C", "AH AC 5H 6H AS");
     }
 }
