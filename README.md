@@ -1,4 +1,4 @@
-## Introduction
+## Simple Poker
 Simple Poker is a variant of poker that removes all decision-making from the game,
 reducing it to a simple game of chance. The rules are:
 
