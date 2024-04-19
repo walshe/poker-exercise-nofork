@@ -11,7 +11,7 @@ import static com.clarusone.poker.HandComparisonUtils.assertWin;
 public class RoyalFlushTests {
 
     @Test
-    public void royal_flush_wins() {
+    public void royal_flush_beats_straight_flush() {
         assertWin("AS QS TS KS JS", "KD QD JD TD 9D");
     }
 
