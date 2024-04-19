@@ -10,17 +10,17 @@ import static com.clarusone.poker.HandComparisonUtils.assertWin;
 public class TwoPairTests {
 
     @Test
-    public void two_pairs_beats_a_single_pair() {
+    void two_pairs_beats_a_single_pair() {
         assertWin("2S 2H 4H 5S 4C", "AH AC 5H 6H 7S");
     }
 
     @Test
-    public void two_pairs_highest_remaining_card_wins() {
+    void two_pairs_highest_remaining_card_wins() {
         assertWin("KS KD QD QC 5C", "KS KH QD QS 2C");
     }
 
     @Test
-    public void two_pairs_highest_pair_wins() {
+    void two_pairs_highest_pair_wins() {
         assertWin("QD QS AS AH 2C", "KS KD QD QC 5C");
     }
 }
