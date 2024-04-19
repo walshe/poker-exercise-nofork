@@ -10,12 +10,12 @@ import static com.clarusone.poker.HandComparisonUtils.assertWin;
 public class StraightFlushTests {
 
     @Test
-    public void highest_straight_flush_wins() {
+    void highest_straight_flush_wins() {
         assertWin("KS AS TS QS JS", "2H 3H 4H 5H 6H");
     }
 
     @Test
-    public void straight_flush_beats_4_of_a_kind() {
+    void straight_flush_beats_4_of_a_kind() {
         assertWin("2H 3H 4H 5H 6H", "AS AD AC AH JD");
     }
 }
