@@ -10,12 +10,12 @@ import static com.clarusone.poker.HandComparisonUtils.assertWin;
 public class FullHouseTests {
 
     @Test
-    public void full_house_beats_a_flush() {
+    void full_house_beats_a_flush() {
         assertWin("2S AH 2H AS AC", "2H 3H 5H 6H 7H");
     }
 
     @Test
-    public void two_full_houses_highest_three_of_a_kind_wins() {
+    void two_full_houses_highest_three_of_a_kind_wins() {
         assertWin("KS KH KD 2S 2C", "JS JH JD AS AC");
     }
 }
