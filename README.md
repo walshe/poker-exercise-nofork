@@ -52,7 +52,7 @@ Your solution is not limited to the files in this repository. Feel free to add y
 The goal is to pass the test suite. If there isn't a test for a particular case, e.g. an invalid string being passed to the `PokerHand` constructor, you may ignore it.
 
 ### Java Version
-By default, the project expects to build and run with JDK v21. You are welcome to use a later JDK provided you:
+By default, the project expects to build and run with JDK v21. You can use a later JDK provided you:
 - Make any changes necessary to the Gradle build to support the newer JDK
 - Clearly mention in your submssion which JDK version should be used
 
