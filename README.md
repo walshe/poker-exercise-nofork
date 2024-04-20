@@ -57,7 +57,7 @@ By default, the project expects to build and run with JDK v21. You are welcome t
 - Clearly mention in your submssion which JDK version should be used
 
 ### GitHub
-- Clone or download this repo (do not fork it)
+- Clone or download this repo, **do not fork it**
 - Push your solution to a private GitHub repo in your account
 - When your solution is complete, add your ClarusONE contact as a collaborator to this repo, so they can access it
 
