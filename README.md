@@ -68,7 +68,7 @@ Ideally, we would like to receive a solution that is both
   also pass
 - Implemented to a high-quality 
 
-We're slightly more interested in the quality of the solution than completeness. In other words, a high-quality solution that 
+We're slightly more interested in the quality of the solution than completeness. A high-quality solution that 
 fails a few tests will likely receive more credit than a complete, but low-quality solution.
 
 One measure of the quality of a solution is its flexibility, e.g. if the rules were changed such that two pairs beats three-of-a-kind, how easy is it to implement this change?
