@@ -3,7 +3,7 @@ Simple Poker is a variant of poker that removes all decision-making from the gam
 reducing it to a simple game of chance. The rules are:
 
 - Each player is dealt 5 cards from the same deck which only they can use
-- The winner is the player with the best hand according to the [standard ranking of poker hands](https://en.wikipedia.org/wiki/List_of_poker_hands#Hand-ranking_categories)
+- The winner is the player with the best hand according to the [standard ranking of poker hands](https://en.wikipedia.org/wiki/List_of_poker_hands#Hand-ranking_categories). Five of a kind does not apply to Simple Poker because there are no wild cards in this version of the game
 - There is no betting, checking, raising, folding, jokers, wild cards, or anything else that isn't mentioned in these rules
 - Aces are always the highest value card (14) in the deck, therefore: 
   - `10, jack, queen, king, ace` **is** a straight
