@@ -10,12 +10,12 @@ public class HandComparisonUtils {
     }
 
     public static void assertWin(String winner, String loser) {
-        int actualResult = compareHands(winner, loser);
-        assertTrue(actualResult > 0);
+        int difference = compareHands(winner, loser);
+        assertTrue(difference > 0);
     }
 
     public static void assertTie(String hand1, String hand2) {
-        int actualResult = compareHands(hand1, hand2);
-        assertEquals(0, actualResult);
+        int difference = compareHands(hand1, hand2);
+        assertEquals(0, difference);
     }
 }
