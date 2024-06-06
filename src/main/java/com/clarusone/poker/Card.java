@@ -1,5 +1,8 @@
 package com.clarusone.poker;
 
+/**
+ * Model for a playing card
+ */
 public final class Card {
 
     private final CardSuit cardSuit;

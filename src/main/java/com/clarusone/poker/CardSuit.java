@@ -2,6 +2,7 @@ package com.clarusone.poker;
 
 /**
  * The individual card suit enum.
+ * Models the suit of a card
  */
 enum CardSuit {
     CLUBS('C'), DIAMONDS('D'), HEARTS('H'), SPADES('S');
