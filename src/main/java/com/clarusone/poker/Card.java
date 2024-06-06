@@ -1,34 +1,21 @@
 package com.clarusone.poker;
 
-public class Card {
+public final class Card {
+
     private final Suit suit;
     private final Rank rank;
 
-    public Card(final String cardString) {
-        if(cardString == null || cardString.length() != 2){
-            throw new IllegalArgumentException("Card must be two characters");
-        }
-        char[] rankAndSuit = cardString.toCharArray();
-
-        this.rank = Rank.fromChar(rankAndSuit[0]);
-        this.suit = Suit.fromChar(rankAndSuit[1]);
-    }
-
-    public Suit getSuit() {
-        return suit;
-    }
-
-    public Rank getRank() {
-        return rank;
-    }
-
-    public enum Suit {
+    /**
+     * The individual card suit enum.
+     */
+    enum Suit {
         CLUBS('C'), DIAMONDS('D'), HEARTS('H'), SPADES('S');
 
         private final char suitChar;
 
         /**
          * The individual card suit enum.
+         *
          * @param suitChar
          */
         Suit(char suitChar) {
@@ -52,7 +39,7 @@ public class Card {
     /**
      * The individual card rank enum.
      */
-    public enum Rank {
+    enum Rank {
         TWO('2'), THREE('3'), FOUR('4'), FIVE('5'), SIX('6'), SEVEN('7'), EIGHT('8'), NINE('9'), TEN('T'),
         JACK('J'), QUEEN('Q'), KING('K'), ACE('A');
 
@@ -75,5 +62,23 @@ public class Card {
             throw new IllegalArgumentException("No enum constant for character: " + rankChar);
         }
 
+    }
+
+    public Card(final String cardString) {
+        if (cardString == null || cardString.length() != 2) {
+            throw new IllegalArgumentException("Card must be two characters");
+        }
+        char[] rankAndSuit = cardString.toCharArray();
+
+        this.rank = Rank.fromChar(rankAndSuit[0]);
+        this.suit = Suit.fromChar(rankAndSuit[1]);
+    }
+
+    public Suit getSuit() {
+        return suit;
+    }
+
+    public Rank getRank() {
+        return rank;
     }
 }

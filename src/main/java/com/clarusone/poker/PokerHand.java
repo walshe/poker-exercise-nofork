@@ -6,154 +6,15 @@ import java.util.stream.Collectors;
 public class PokerHand implements Comparable<PokerHand> {
 
     private final Rank rank;
-    private final List<Card> cards; // TODO do we need to hold field?
 
-
-    public PokerHand(String fiveCards) {
-
-        this.cards = parseCards(fiveCards);
-
-        // calculate the rank of the hand
-        rank = Rank.fromCards(this.cards);
-
-
-    }
-
-    /**
-     * parse the hand into 5 cards, throw an error if any errors during parsing
-     *
-     * @param fiveCards
-     * @return
-     */
-    private List<Card> parseCards(final String fiveCards) {
-        if (fiveCards == null || fiveCards.isEmpty()) {
-            throw new IllegalArgumentException("Empty hand");
-        }
-
-        String[] cards = fiveCards.split(" ");
-
-        if (cards.length != 5) {
-            throw new IllegalArgumentException("Invalid hand");
-        }
-
-        return Arrays.stream(cards).map(Card::new).collect(Collectors.toList());
-    }
-
-
-    public Rank getRank() {
-        return this.rank;
-    }
-
-//    public List<Card> getCards() {
-//        return this.cards;
-//    }
-
-    public Card.Rank getHighestCardRank() {
-        return this.cards.stream().max(Comparator.comparingInt(card -> card.getRank().ordinal())).get().getRank();
-    }
-
-    public Card.Rank getFullHouseHighestThreeOfAKindCardRank(){
-        if (getRank() != Rank.FULL_HOUSE) {
-            return null;
-        }
-        return null;
-
-    }
-
-    public Card.Rank getHighCardFifthHighestCardRank(){
-        if (getRank() != Rank.HIGH_CARD) {
-            return null;
-        }
-        //TODO
-        return null;
-    }
-
-    public Card.Rank getPairHighestCardRank(){
-        if (getRank() != Rank.PAIR) {
-            return null;
-        }
-        //TODO
-        return null;
-    }
-
-    public Card.Rank getTwoPairHighestRemainingCardRank(){
-        if (getRank() != Rank.TWO_PAIR) {
-            return null;
-        }
-        //TODO
-        return null;
-    }
-
-
-
-    @Override
-    public int compareTo(PokerHand opponentHand) {
-
-        if (this.rank.compareTo(opponentHand.getRank()) > 0) {
-            return 1;
-        } else if (this.rank.compareTo(opponentHand.getRank()) < 0) {
-            return -1;
-        } else {
-            // both hands have same rank so we need to anaylze the ranks in finer detail
-            // but depending on the rank of hand we need to check on different aspects
-
-            switch (this.rank){
-                case FULL_HOUSE :
-                    if(this.getFullHouseHighestThreeOfAKindCardRank().compareTo(opponentHand.getFullHouseHighestThreeOfAKindCardRank()) > 0 ){
-                        return 1;
-                    } else if (this.getFullHouseHighestThreeOfAKindCardRank().compareTo(opponentHand.getFullHouseHighestThreeOfAKindCardRank()) < 0) {
-                        return -1;
-                    } else {
-                        return 0;
-                    }
-
-                case HIGH_CARD:
-                    if(this.getHighCardFifthHighestCardRank().compareTo(opponentHand.getHighCardFifthHighestCardRank()) > 0 ){
-                        return 1;
-                    } else if (this.getHighCardFifthHighestCardRank().compareTo(opponentHand.getHighCardFifthHighestCardRank()) < 0) {
-                        return -1;
-                    } else {
-                        return 0;
-                    }
-
-                case PAIR:
-                    if(this.getPairHighestCardRank().compareTo(opponentHand.getPairHighestCardRank()) > 0 ){
-                        return 1;
-                    } else if (this.getPairHighestCardRank().compareTo(opponentHand.getPairHighestCardRank()) < 0) {
-                        return -1;
-                    } else {
-                        return 0;
-                    }
-                case TWO_PAIR:
-                    if(this.getTwoPairHighestRemainingCardRank().compareTo(opponentHand.getTwoPairHighestRemainingCardRank()) > 0 ){
-                        return 1;
-                    } else if (this.getTwoPairHighestRemainingCardRank().compareTo(opponentHand.getTwoPairHighestRemainingCardRank()) < 0) {
-                        return -1;
-                    } else {
-                        return 0;
-                    }
-
-                default:
-                    if (this.getHighestCardRank().compareTo(opponentHand.getHighestCardRank()) > 0) {
-                    return 1;
-                } else if (this.getHighestCardRank().compareTo(opponentHand.getHighestCardRank()) < 0) {
-                    return -1;
-                } else {
-                    // if both hands are the same, then we have a tie
-                    return 0;
-                }
-
-            }
-
-
-        }
-
-    }
+    //once initialized we can assume cards are sorted asc by card rank
+    private final List<Card> cards;
 
     /**
      * The PokerHand rank enum.
+     * Ordinal of the enum represents the ranking of the hand from 0 (lowest) to 9 (highest)
      */
-    public enum Rank {
+    enum Rank {
         HIGH_CARD,
         PAIR,
         TWO_PAIR,
@@ -166,7 +27,8 @@ public class PokerHand implements Comparable<PokerHand> {
         ROYAL_FLUSH;
 
         /**
-         * starting from highest type of hand, try to check if current hand matches
+         * Calculate the rank of the hand.
+         * Starting from highest type of hand, try to check if current hand matches
          * if not see if it fits next highest hand
          * do until we get to lowest ranking hand.
          * Rank ordinal will represents the poker hand ranking low to high
@@ -179,11 +41,8 @@ public class PokerHand implements Comparable<PokerHand> {
                 throw new IllegalArgumentException("Exactly 5 cards are required.");
             }
 
-            // Sort the cards by rank
-            Collections.sort(cards, Comparator.comparingInt(card -> card.getRank().ordinal()));
-
-            boolean isFlush = isFlush(cards);
-            boolean isStraight = isStraight(cards);
+            boolean isFlush = Utils.isFlush(cards);
+            boolean isStraight = Utils.isStraight(cards);
 
             if (isFlush && isStraight && cards.get(4).getRank() == Card.Rank.ACE) {
                 return ROYAL_FLUSH;
@@ -201,7 +60,7 @@ public class PokerHand implements Comparable<PokerHand> {
                 return STRAIGHT;
             }
 
-            Map<Card.Rank, Long> rankFrequency = getRankFrequency(cards);
+            Map<Card.Rank, Long> rankFrequency = Utils.getRankFrequency(cards);
 
             if (rankFrequency.containsValue(4L)) {
                 return FOUR_OF_A_KIND;
@@ -210,7 +69,7 @@ public class PokerHand implements Comparable<PokerHand> {
             if (rankFrequency.containsValue(3L) && rankFrequency.containsValue(2L)) {
                 return FULL_HOUSE;
             }
-            
+
             if (rankFrequency.containsValue(3L)) {
                 return THREE_OF_A_KIND;
             }
@@ -226,23 +85,150 @@ public class PokerHand implements Comparable<PokerHand> {
             return HIGH_CARD;
         }
 
-        private static boolean isFlush(List<Card> cards) {
-            Card.Suit firstSuit = cards.get(0).getSuit();
-            return cards.stream().allMatch(card -> card.getSuit() == firstSuit);
+    }
+
+
+    public PokerHand(String fiveCards) {
+
+        this.cards = parseCards(fiveCards);
+
+        //sort the cards ascending by Card rank
+        Collections.sort(this.cards, Comparator.comparingInt(card -> card.getRank().ordinal()));
+
+        // calculate the rank of the hand
+        rank = Rank.fromCards(this.cards);
+
+
+    }
+
+    /**
+     * Parse the hand into 5 card objects, throw an error if any errors during parsing
+     *
+     * @param fiveCards
+     * @return
+     */
+    private List<Card> parseCards(final String fiveCards) {
+        return Optional.ofNullable(fiveCards)
+                .filter(hand -> !hand.isBlank())
+                .map(hand -> hand.split(" "))
+                .filter(parts -> parts.length == 5)
+                .map(Arrays::stream)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid hand"))
+                .map(Card::new)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Get the rank of the hand. e.g. STRAIGHT_FLUSH, PAIR, THREE_OF_A_KIND, etc.
+     * @return
+     */
+    private Rank getRank() {
+        return this.rank;
+    }
+
+    private Card.Rank getHighestCardRank() {
+        return this.cards.stream().max(Comparator.comparingInt(card -> card.getRank().ordinal())).get().getRank();
+    }
+
+    private Card.Rank getFullHouseHighestThreeOfAKindCardRank() {
+        if (getRank() != Rank.FULL_HOUSE) {
+            return null;
         }
 
-        private static boolean isStraight(List<Card> cards) {
-            for (int i = 0; i < cards.size() - 1; i++) {
-                if (cards.get(i).getRank().ordinal() + 1 != cards.get(i + 1).getRank().ordinal()) {
-                    return false;
+        // get the rank of the card that has a frequency of 3
+        return Utils.getRankFrequency(this.cards).entrySet().stream()
+                .filter(entry -> entry.getValue().equals(3L))
+                .map(entry -> entry.getKey()).findFirst().orElseThrow(IllegalStateException::new);
+
+    }
+
+    private Card.Rank getPairHighestCardRank() {
+        if (getRank() != Rank.PAIR) {
+            return null;
+        }
+        // get the rank of the cards that has a rank frequency of 2
+        return Utils.getRankFrequency(this.cards)
+                .entrySet().stream()
+                .filter(entry -> entry.getValue().equals(2L))
+                .map(entry -> entry.getKey()).findFirst().orElseThrow(IllegalStateException::new);
+
+
+    }
+
+    private Card.Rank getTwoPairHighestRemainingCardRank() {
+        if (getRank() != Rank.TWO_PAIR) {
+            return null;
+        }
+        // get the ranks of the cards that has a rank frequency of 1 i.e. the remaining card
+        return Utils.getRankFrequency(this.cards)
+                .entrySet().stream()
+                .filter(entry -> entry.getValue().equals(1L))
+                .map(entry -> entry.getKey()).findFirst().orElseThrow(IllegalStateException::new);
+    }
+
+
+    @Override
+    public int compareTo(PokerHand opponentHand) {
+        int comparisonResult = this.getRank().compareTo(opponentHand.getRank());
+        return (comparisonResult == 0) ? compareToRankDetailed(opponentHand) : comparisonResult;
+    }
+
+    /**
+     * Compare two hands of the same rank.
+     * Depending on the rank of hand we need to check on different aspects
+     *
+     * @param opponentHand
+     * @return
+     */
+    private int compareToRankDetailed(PokerHand opponentHand) {
+        if (this.getRank() == null || opponentHand.getRank() == null) {
+            throw new IllegalArgumentException("Invalid Rank");
+        }
+        if (this.getRank() != opponentHand.getRank()) {
+            throw new IllegalArgumentException("Hands have different ranks!");
+        }
+        switch (this.rank) {
+            case FULL_HOUSE:
+                return this.getFullHouseHighestThreeOfAKindCardRank().compareTo(opponentHand.getFullHouseHighestThreeOfAKindCardRank());
+
+            case HIGH_CARD:
+                for (int i = cards.size() - 1; i >= 0; i--) {
+                    int comparisonResult = this.cards.get(i).getRank().compareTo(opponentHand.cards.get(i).getRank());
+
+                    // if not a tie, return the result
+                    if (comparisonResult != 0) {
+                        return comparisonResult;
+                    }
+                    //else, continue to the next card
                 }
-            }
-            return true;
-        }
+                return 0;
 
-        private static Map<Card.Rank, Long> getRankFrequency(List<Card> cards) {
-            return cards.stream()
-                    .collect(Collectors.groupingBy(Card::getRank, Collectors.counting()));
+            case PAIR:
+                int comparisonResult = this.getPairHighestCardRank().compareTo(opponentHand.getPairHighestCardRank());
+                if (comparisonResult != 0) {
+                    return comparisonResult;
+                } else {
+                    // find highest card in the remaining cards
+                    for (int i = cards.size() - 3; i >= 0; i--) {
+                        comparisonResult = this.cards.get(i).getRank().compareTo(opponentHand.cards.get(i).getRank());
+                        if (comparisonResult > 0) {
+                            return 1;
+                        } else if (comparisonResult < 0) {
+                            return -1;
+                        }
+                    }
+                    return 0;
+                }
+
+
+            case TWO_PAIR:
+                return this.getTwoPairHighestRemainingCardRank().compareTo(opponentHand.getTwoPairHighestRemainingCardRank());
+
+
+            default:
+                return this.getHighestCardRank().compareTo(opponentHand.getHighestCardRank());
+
+
         }
     }
 
