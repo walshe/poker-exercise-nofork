@@ -3,7 +3,7 @@ package com.clarusone.poker;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public final class Utils {
+public final class PokerHandUtils {
 
     /**
      * Check if the cards are a flush - all same Card Suit
@@ -14,6 +14,8 @@ public final class Utils {
         CardSuit firstSuit = cards.get(0).getCardSuit();
         return cards.stream().allMatch(card -> card.getCardSuit() == firstSuit);
     }
+
+
 
     /**
      * Check if the cards are a straight.

@@ -36,8 +36,8 @@ enum PokerHandRank {
             throw new IllegalArgumentException("Exactly 5 cards are required.");
         }
 
-        boolean isFlush = Utils.isFlush(cards);
-        boolean isStraight = Utils.isStraight(cards);
+        boolean isFlush = PokerHandUtils.isFlush(cards);
+        boolean isStraight = PokerHandUtils.isStraight(cards);
 
         if (isFlush && isStraight && cards.get(4).getCardRank() == CardRank.ACE) {
             return ROYAL_FLUSH;
@@ -55,7 +55,7 @@ enum PokerHandRank {
             return STRAIGHT;
         }
 
-        Map<CardRank, Long> rankFrequency = Utils.getCardRankFrequency(cards);
+        Map<CardRank, Long> rankFrequency = PokerHandUtils.getCardRankFrequency(cards);
 
         if (rankFrequency.containsValue(4L)) {
             return FOUR_OF_A_KIND;

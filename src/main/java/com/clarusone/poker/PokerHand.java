@@ -16,7 +16,7 @@ public class PokerHand implements Comparable<PokerHand> {
      */
     private final List<Card> cards;
 
-    public PokerHand(String fiveCards) {
+    public PokerHand(final String fiveCards) {
 
         this.cards = parseCards(fiveCards);
 
@@ -64,7 +64,7 @@ public class PokerHand implements Comparable<PokerHand> {
         }
 
         // get the rank of the card that has a frequency of 3
-        return Utils.getCardRankFrequency(this.cards).entrySet().stream()
+        return PokerHandUtils.getCardRankFrequency(this.cards).entrySet().stream()
                 .filter(entry -> entry.getValue().equals(3L))
                 .map(entry -> entry.getKey()).findFirst().orElseThrow(IllegalStateException::new);
 
@@ -75,7 +75,7 @@ public class PokerHand implements Comparable<PokerHand> {
             return null;
         }
         // get the rank of the cards that has a rank frequency of 2
-        return Utils.getCardRankFrequency(this.cards)
+        return PokerHandUtils.getCardRankFrequency(this.cards)
                 .entrySet().stream()
                 .filter(entry -> entry.getValue().equals(2L))
                 .map(entry -> entry.getKey()).findFirst().orElseThrow(IllegalStateException::new);
@@ -89,7 +89,7 @@ public class PokerHand implements Comparable<PokerHand> {
         }
 
         // get the ranks of the cards that has a rank frequency of 2, then get max rank of these
-        return Utils.getCardRankFrequency(this.cards)
+        return PokerHandUtils.getCardRankFrequency(this.cards)
                 .entrySet().stream()
                 .filter(entry -> entry.getValue().equals(2L))
                 .map(Map.Entry::getKey)
@@ -102,7 +102,7 @@ public class PokerHand implements Comparable<PokerHand> {
         }
 
         // get the ranks of the cards that has a rank frequency of 1 i.e. the remaining card
-        return Utils.getCardRankFrequency(this.cards)
+        return PokerHandUtils.getCardRankFrequency(this.cards)
                 .entrySet().stream()
                 .filter(entry -> entry.getValue().equals(1L))
                 .map(entry -> entry.getKey()).findFirst().orElseThrow(IllegalStateException::new);
@@ -169,7 +169,6 @@ public class PokerHand implements Comparable<PokerHand> {
 
             default:
                 return this.getHighestCardRank().compareTo(opponentHand.getHighestCardRank());
-
 
         }
     }
