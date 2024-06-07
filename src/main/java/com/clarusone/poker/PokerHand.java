@@ -16,8 +16,19 @@ public class PokerHand implements Comparable<PokerHand> {
      */
     private final List<Card> cards;
 
+    /**
+     * stores a map of CardRanks to the frequency that they occur in the hand
+     */
     private Map<CardRank, Long> cardRankFrequency;
 
+    private PokerHand(){
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Constructor
+     * @param fiveCards
+     */
     public PokerHand(final String fiveCards) {
 
         this.cards = parseCards(fiveCards);
@@ -210,6 +221,9 @@ public class PokerHand implements Comparable<PokerHand> {
      * is less than, equal to, or greater than the specified object.
      */
     private int compareHighCard(PokerHand opponentHand) {
+        if (this.pokerHandRank != PokerHandRank.HIGH_CARD) {
+            throw new IllegalStateException("Unexpected PokerHandRank");
+        }
         for (int i = cards.size() - 1; i >= 0; i--) {
             int result = this.cards.get(i).getCardRank().compareTo(opponentHand.cards.get(i).getCardRank());
             if (result != 0) {
@@ -227,6 +241,9 @@ public class PokerHand implements Comparable<PokerHand> {
      * is less than, equal to, or greater than the specified object.
      */
     private int comparePair(PokerHand opponentHand) {
+        if (this.pokerHandRank != PokerHandRank.PAIR) {
+            throw new IllegalStateException("Unexpected PokerHandRank");
+        }
         int result = this.getPairHighestCardRank().compareTo(opponentHand.getPairHighestCardRank());
         if (result != 0) {
             return result;
