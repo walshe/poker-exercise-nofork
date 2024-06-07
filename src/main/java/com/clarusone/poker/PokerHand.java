@@ -284,4 +284,16 @@ public class PokerHand implements Comparable<PokerHand> {
         };
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PokerHand pokerHand = (PokerHand) o;
+        return Objects.equals(cards, pokerHand.cards);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(cards);
+    }
 }
